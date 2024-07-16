@@ -7,28 +7,28 @@ function App() {
 
   useEffect(() => {
     const fetchDishes = async () => {
-      const response = await axios.get('http://localhost:3000/dishes');
+      const response = await axios.get('http://localhost:8080/dishes');
       setDishes(response.data.data);
     };
 
-    // Initial fetch
+    //display all dishes
     fetchDishes();
 
-    // Set interval to fetch dishes every 2 seconds
+    //real time update done by refreshing the page every one second
     const intervalId = setInterval(fetchDishes, 1000);
 
-    // Cleanup interval on component unmount
+
     return () => clearInterval(intervalId);
   }, []);
 
   const togglePublished = async (id) => {
-    await axios.put(`http://localhost:3000/dishes/${id}/toggle`);
+    await axios.put(`http://localhost:8080/dishes/${id}`);
   };
 
   return (
     <div>
       <header className="header">
-        <h1>NOSH</h1>
+        <h1>Nosh</h1>
       </header>
       <div className="container">
         <div className="dish-list">
